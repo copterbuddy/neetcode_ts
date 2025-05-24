@@ -10,7 +10,7 @@ function carFleet(target: number, position: number[], speed: number[]): number {
 
     let time: number[] = []
     for (let i: number = 0; i < totalCar; i++){
-        time.push((target - position[i]) / speed[i])
+        time.push((target - zip[i][0]) / zip[i][1])
     }
 
     let result: number = 0
