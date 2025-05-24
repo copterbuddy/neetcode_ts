@@ -19,6 +19,6 @@ test('LeetCode141LinkedListCycle success case 1', () => {
 
 test('LeetCode141LinkedListCycle success case 2', () => {
     let result: boolean = hasCycle(null)
-    let want: boolean = true
+    let want: boolean = false
     expect(result).toEqual(want)
 });
