@@ -12,11 +12,11 @@ export default function minEatingSpeed(piles: number[], h: number): number {
             totalHourUsed += hourUse
         }
 
-        if (totalHourUsed > maxHour){
-            l = speed + 1
-        }else {
+        if (totalHourUsed <= maxHour){
             res = speed
             r = speed - 1
+        }else {
+            l = speed + 1
         }
     }
 
