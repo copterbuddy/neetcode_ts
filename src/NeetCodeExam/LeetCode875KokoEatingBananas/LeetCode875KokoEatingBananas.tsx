@@ -4,7 +4,7 @@ export default function minEatingSpeed(piles: number[], h: number): number {
     let l = 1
     let r = maxEat
     let res = maxEat
-    while(l < r){
+    while(l <= r){
         let speed = Math.floor((l + r) / 2)
         let totalHourUsed =  0
         for(let i: number = 0; i < piles.length; i++){
@@ -12,13 +12,10 @@ export default function minEatingSpeed(piles: number[], h: number): number {
             totalHourUsed += hourUse
         }
 
-        if(totalHourUsed <= maxHour){
-            res = speed
-        }
-
         if (totalHourUsed > maxHour){
             l = speed + 1
         }else {
+            res = speed
             r = speed - 1
         }
     }
