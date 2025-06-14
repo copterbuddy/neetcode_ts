@@ -29,3 +29,9 @@ test('Test LeetCode 33 Success Case 5',() => {
     let result = search(nums, target)
     expect(result).toBe(1)
 })
+
+test('Test LeetCode 33 Success Case 6',() => {
+    let nums = [5,1,3], target = 3
+    let result = search(nums, target)
+    expect(result).toBe(2)
+})

@@ -16,7 +16,7 @@ export default function search(nums: number[], target: number): number {
             }
         }else{
             //rigth section
-            if(target >= nums[m] && target < nums[r]){
+            if(target > nums[m] && target <= nums[r]){
                 l = m + 1
             }else{
                 r = m - 1
