@@ -1,5 +1,6 @@
 //LeetCode141LinkedListCycle.spec.tsx
 import hasCycle from "./LeetCode141LinkedListCycle";
+import ListNode from "./ListNode";
 
 test('LeetCode141LinkedListCycle success case 1', () => {
     let node0: ListNode = { val: 3, next: null };

@@ -1,5 +1,7 @@
 //LeetCode141LinkedListCycle.tsx
 
+import ListNode from "./ListNode";
+
 function hasCycle(head: ListNode | null): boolean {
     let curr: ListNode | null = head
     const dict = new Map<ListNode | null, 0>();
