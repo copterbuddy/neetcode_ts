@@ -1,6 +1,6 @@
 //LeetCode141LinkedListCycle.tsx
 
-import ListNode from "./ListNode";
+import ListNode from "../Models/ListNode";
 
 function hasCycle(head: ListNode | null): boolean {
     let curr: ListNode | null = head
