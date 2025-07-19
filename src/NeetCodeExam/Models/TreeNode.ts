@@ -38,6 +38,7 @@ export function arrayToTree(arr: (number | null)[]): TreeNode | null {
     return root;
 }
 
+//arrayToTree([1, 2, 3, null, 4, 5, null])
 export function treeToArray(root: TreeNode | null): (number | null)[] {
     const result: (number | null)[] = [];
     const queue: (TreeNode | null)[] = [root];
