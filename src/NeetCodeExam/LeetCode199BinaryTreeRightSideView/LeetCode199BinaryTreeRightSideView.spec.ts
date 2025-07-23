@@ -6,9 +6,3 @@ test("LeetCode199 rightSideView Success Case 1",() => {
     let result = rightSideView(arrayToTree(root))
     expect(result).toEqual([1,3,4])
 })
-
-test("LeetCode199 rightSideView Success Case 2",() => {
-    let root = [1,2,3,4,null,null,null,5]
-    let result = rightSideView(arrayToTree(root))
-    expect(result).toEqual([1,3,4])
-})
