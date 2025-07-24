@@ -16,23 +16,25 @@ export function arrayToTree(arr: (number | null)[]): TreeNode | null {
     const queue: (TreeNode | null)[] = [root];
     let i = 1;
 
-    while (i < arr.length) {
-        const current = queue.shift();
-        if (!current) continue;
+    while (queue.length > 0 && i < arr.length) {
+        const current = queue.shift() ?? null
 
-        // สร้างซ้าย
-        if (i < arr.length && arr[i] !== null) {
-            current.left = new TreeNode(arr[i]!);
-            queue.push(current.left);
-        }
-        i++;
+        // ใส่แม้กระทั่ง current เป็น null เพื่อคงตำแหน่งใน tree
+        if (current !== null) {
+            if (i < arr.length) {
+                const leftVal = arr[i];
+                current.left = leftVal !== null ? new TreeNode(leftVal) : null;
+                queue.push(current.left);
+                i++;
+            }
 
-        // สร้างขวา
-        if (i < arr.length && arr[i] !== null) {
-            current.right = new TreeNode(arr[i]!);
-            queue.push(current.right);
+            if (i < arr.length) {
+                const rightVal = arr[i];
+                current.right = rightVal !== null ? new TreeNode(rightVal) : null;
+                queue.push(current.right);
+                i++;
+            }
         }
-        i++;
     }
 
     return root;
