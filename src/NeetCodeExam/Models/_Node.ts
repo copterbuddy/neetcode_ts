@@ -1,51 +1,56 @@
 class _Node {
     val: number
-    next: _Node | null
-    random: _Node | null
-    constructor(val?: number, next?: _Node, random?: _Node) {
+    neighbors: _Node[]
+
+    constructor(val?: number, neighbors?: _Node[]) {
         this.val = (val===undefined ? 0 : val)
-        this.next = (next===undefined ? null : next)
-        this.random = (random===undefined ? null : random)
+        this.neighbors = (neighbors===undefined ? [] : neighbors)
     }
 }
 
-function arrayToListNode(arr: number[]): _Node | null {
-    if (arr.length === 0) return null;
+function buildGraph(adjList: number[][]): _Node | null {
+    if (adjList.length === 0) return null;
 
-    const head = new _Node(arr[0]);
-    let current = head;
-
-    for (let i = 1; i < arr.length; i++) {
-        current.next = new _Node(arr[i]);
-        current = current.next;
+    // สร้าง node ทุกตัวก่อน
+    const nodes: _Node[] = [];
+    for (let i = 0; i < adjList.length; i++) {
+        nodes[i] = new _Node(i + 1); // ให้ val = 1-based
     }
 
-    return head;
-}
-
-function listToArray(head: _Node | null): number[] {
-    const result: number[] = [];
-    while (head) {
-        result.push(head.val);
-        head = head.next;
-    }
-    return result;
-}
-
-function cloneList(head: _Node | null): _Node | null {
-    if (!head) return null;
-
-    const newHead = new _Node(head.val);
-    let currOld = head.next;
-    let currNew = newHead;
-
-    while (currOld) {
-        currNew.next = new _Node(currOld.val);
-        currNew = currNew.next;
-        currOld = currOld.next;
+    // เติม neighbors
+    for (let i = 0; i < adjList.length; i++) {
+        for (const neighbor of adjList[i]) {
+            nodes[i].neighbors.push(nodes[neighbor - 1]); // เพราะ adjList ใช้เลข 1-based
+        }
     }
 
-    return newHead;
+    return nodes[0]; // return root (node 1)
 }
 
-export { _Node, arrayToListNode, listToArray, cloneList }
+function graphToAdjList(node: _Node | null): number[][] {
+    if (!node) return [];
+
+    let map = new Map<_Node, number>();
+    let adj: number[][] = [];
+    let queue: _Node[] = [node];
+    let visited = new Set<_Node>();
+
+    while (queue.length > 0) {
+        let curr = queue.shift()!;
+        if (visited.has(curr)) continue;
+        visited.add(curr);
+
+        if (!map.has(curr)) {
+            map.set(curr, curr.val);
+        }
+        // สร้าง adjacency ของ curr
+        adj[curr.val - 1] = curr.neighbors.map(n => n.val);
+
+        for (let nei of curr.neighbors) {
+            if (!visited.has(nei)) queue.push(nei);
+        }
+    }
+    return adj;
+}
+
+export { _Node, buildGraph, graphToAdjList }
